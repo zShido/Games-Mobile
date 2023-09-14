@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Lista de Jogos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let jogo of lista_jogos;">
+    <ion-item (click)="editar(jogo)">
+      <ion-label>{{jogo.nome}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="tertiary" (click)="irParaCadastrar()">
+      <ion-icon name="game-controller-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
