@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
@@ -17,7 +18,7 @@ export class DetalharPage implements OnInit {
   preco!: number;
   edicao: boolean = true;
 
-  constructor(private firebase: FirebaseService, private router: Router) {}
+  constructor(private firebase: FirebaseService, private router: Router, private alertController: AlertController) {}
 
   ngOnInit() {
     this.jogo = history.state.jogo;
@@ -37,16 +38,37 @@ export class DetalharPage implements OnInit {
   }
 
   editar() {
-    let novo: Jogo = new Jogo(this.nome, this.descricao);
-    novo.genero = this.genero;
-    novo.avaliacao = this.avaliacao;
-    novo.preco = this.preco;
-    this.firebase.update(novo, this.jogo.id);
-    this.router.navigate(['/home']);
+    if (
+      !this.nome ||
+      !this.descricao ||
+      !this.avaliacao ||
+      !this.preco ||
+      !this.genero
+    ) {
+      this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
+    } else {
+      this.presentAlert('Sucesso', 'Contato Cadastrado!');
+      let novo: Jogo = new Jogo(this.nome, this.descricao);
+      novo.genero = this.genero;
+      novo.avaliacao = this.avaliacao;
+      novo.preco = this.preco;
+      this.firebase.update(novo, this.jogo.id);
+      this.router.navigate(['/home']);
+    }
   }
 
   excluir() {
     this.firebase.delete(this.jogo.id);
     this.router.navigate(['/home']);
+  }
+
+  async presentAlert(subHeader: string, message: string) {
+    const alert = await this.alertController.create({
+      header: 'Game List',
+      subHeader: subHeader,
+      message: message,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 }
