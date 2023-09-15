@@ -55,10 +55,10 @@ export default class Jogo{
       
  
 }
-export enum Genero{
-    ACAO = "Acao",
-    TERROR = "Terror",
-    TIRO = "Tiro",
-    RPG = "Rpg",
-    AVENTURA = "Aventura",
- }
+export enum Genero {
+  ACAO = "Ação",
+  TERROR = "Terror",
+  TIRO = "Tiro",
+  RPG = "Rpg",
+  AVENTURA = "Aventura",
+}

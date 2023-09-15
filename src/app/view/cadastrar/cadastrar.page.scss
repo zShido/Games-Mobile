@@ -1,0 +1,79 @@
+:host {
+  font-family: "Press Start 2P", cursive;
+
+  ion-header {
+    font-family: "Press Start 2P", cursive;
+    font-size: 1em;
+    text-align: left;
+  }
+
+  ion-content {
+    --background: #002240;
+    font-family: "Press Start 2P", cursive;
+    color: yellow;
+  }
+
+  ion-toolbar {
+    --background: dodgerblue;
+    border-radius: 20px 20px 0 0;
+    text-align: left;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  ion-list {
+    background: transparent;
+    margin-top: 10px;
+  }
+
+  ion-item {
+    --inner-border-width: 0;
+    --background: transparent;
+    background-color: indigo;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: none;
+    border: none;
+  }
+
+  ion-label,
+  ion-input,
+  ion-select {
+    font-family: "Press Start 2P", cursive;
+    font-size: 0.7rem;
+    flex: none;
+    color: rgba(255, 255, 0, 1);
+    width: 100%;
+    line-height: 1.5em;
+  }
+
+  ion-title {
+    font-family: "Press Start 2P";
+    font-size: 0.6rem;
+    color: yellow;
+  }
+
+  ion-button[expand="block"] {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 20px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 1rem;
+
+    --background: dodgerblue;
+    --color: yellow;
+  }
+
+  ion-back-button {
+    --color: yellow;
+  }
+  ion-icon {
+    font-size: 25px;
+    margin-left: 10px;
+  }
+}
