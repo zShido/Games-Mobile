@@ -1,27 +1,113 @@
-#container {
-  text-align: center;
+:host {
+  font-family: "Press Start 2P", cursive;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  ion-header {
+    font-family: "Press Start 2P", cursive;
+    font-size: 1em;
+    text-align: left;
+  }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+  ion-content {
+    --background: #002240; // Cor azul petróleo
+    font-family: "Press Start 2P", cursive; // Fonte retro pixel
+    color: yellow; // Cor amarela para todo o texto
+  }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  ion-toolbar {
+    --background: dodgerblue; /* Gradiente azul celeste */
+    border-radius: 20px 20px 0 0;
+    text-align: left; // para alinhar o título à esquerda
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
 
-  color: #8c8c8c;
+  ion-item {
+    --inner-border-width: 0; // Remove bordas internas
+    --background: transparent; // Deixa o background transparente para evitar problemas de sobreposição
+    background-color: indigo;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px; // Dá um espaçamento interno à esquerda
+    padding-right: 20px; // Dá um espaçamento interno à direita
 
-  margin: 0;
-}
+    // Tentativa de corrigir problemas visuais
+    box-shadow: none;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
 
-#container a {
-  text-decoration: none;
+  ion-label {
+    font-family: "Press Start 2P", cursive;
+    font-size: 0.9rem;
+    flex: none;
+    color: rgba(255, 255, 0, 1);
+    width: 100%;
+    margin-top: 15px;
+    line-height: 1.5em;
+  }
+
+  ion-fab {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+  }
+
+  ion-fab-button {
+    --background: linear-gradient(
+      to right,
+      #b0e0e6,
+      #87cefa
+    ); // Gradiente azul celeste
+    border-radius: 20px;
+    color: yellow;
+  }
+
+  .access-button {
+    display: block;
+    width: 80%; /* Faz o botão ocupar 80% da largura da tela */
+    margin: 20px auto; /* Centraliza o botão horizontalmente e adiciona margem em cima e embaixo */
+    padding: 10px 0;
+    text-align: center;
+    background: dodgerblue;
+    border-radius: 20px;
+    color: yellow;
+    font-family: "Press Start 2P", cursive;
+    border: none; /* Remove qualquer borda padrão do botão */
+    font-size: 1rem;
+  }
+
+  .access-button ion-icon {
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  ion-list {
+    background: transparent;
+    margin-top: 10px;
+  }
+
+  ion-title {
+    font-family: "Press Start 2P";
+    font-size: 0.8em; // Diminui um pouco a fonte para tentar acomodá-la melhor
+    color: yellow;
+  }
+
+  strong {
+    font-size: initial;
+    margin-bottom: 10px;
+  }
+
+  .info-jogo {
+    color: rgba(255, 255, 0, 0.6); // Cor amarela com 60% de opacidade
+  }
+
+  ion-icon {
+    font-size: 25px;
+    margin-left: 10px;
+  }
 }

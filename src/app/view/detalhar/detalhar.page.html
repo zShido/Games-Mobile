@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
     <ion-title>Detalhes do Jogo</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,15 +13,30 @@
       <ion-toggle (ionChange)="habilitarEdicao()">Habilitar Edição</ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-input label="Nome" placeholder="Insira o nome do Jogo" [(ngModel)]="nome" disabled="{{edicao}}"></ion-input>
+      <ion-input
+        label="Nome:"
+        placeholder="Insira o nome do Jogo"
+        [(ngModel)]="nome"
+        disabled="{{edicao}}"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input label="Descricao" placeholder="Insira a Descricao do Jogo" [(ngModel)]="descricao" disabled="{{edicao}}"></ion-input>
+      <ion-input
+        label="Descrição:"
+        placeholder="Insira a Descricao do Jogo"
+        [(ngModel)]="descricao"
+        disabled="{{edicao}}"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-select label="Gemero" placeholder="Selecione o Genero" [(ngModel)]="genero" disabled="{{edicao}}">
+      <ion-select
+        label="Gênero:"
+        placeholder="Selecione o Genero"
+        [(ngModel)]="genero"
+        disabled="{{edicao}}"
+      >
         <ion-select-option value="ACAO">Acao</ion-select-option>
         <ion-select-option value="TERROR">Terror</ion-select-option>
         <ion-select-option value="TIRO">Tiro</ion-select-option>
@@ -28,14 +46,38 @@
     </ion-item>
 
     <ion-item>
-      <ion-input label="Avaliacao" placeholder="Insira a Nota do Jogo" [(ngModel)]="avaliacao" type="number" disabled="{{edicao}}"></ion-input>
+      <ion-input
+        label="Avaliação:"
+        placeholder="Insira a Nota do Jogo"
+        [(ngModel)]="avaliacao"
+        type="number"
+        disabled="{{edicao}}"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input label="Preco" placeholder="Insira o preco do Jogo" [(ngModel)]="preco" type="number" disabled="{{edicao}}"></ion-input>
+      <ion-input
+        label="Preço:"
+        placeholder="Insira o preco do Jogo"
+        [(ngModel)]="preco"
+        type="number"
+        disabled="{{edicao}}"
+      ></ion-input>
     </ion-item>
 
-    <ion-button expand="block" (click)="editar()" color="sucess" disabled="{{edicao}}">Salvar</ion-button>
-    <ion-button expand="block" (click)="excluir()" color="danger" disabled="{{edicao}}">Excluir</ion-button>
+    <ion-button
+      expand="block"
+      (click)="editar()"
+      color="sucess"
+      disabled="{{edicao}}"
+      >Salvar</ion-button
+    >
+    <ion-button
+      expand="block"
+      (click)="excluir()"
+      color="danger"
+      disabled="{{edicao}}"
+      >Excluir</ion-button
+    >
   </ion-list>
 </ion-content>
