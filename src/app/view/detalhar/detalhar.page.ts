@@ -51,7 +51,7 @@ export class DetalharPage implements OnInit {
     ) {
       this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
     } else {
-      this.presentAlert('Sucesso', 'Jogo Cadastrado!');
+      this.presentAlert('Sucesso', 'Jogo Alterado!');
       let novo: Jogo = new Jogo(this.nome, this.descricao);
       novo.genero = this.genero;
       novo.avaliacao = this.avaliacao;
