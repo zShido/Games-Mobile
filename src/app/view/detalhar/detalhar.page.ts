@@ -18,7 +18,11 @@ export class DetalharPage implements OnInit {
   preco!: number;
   edicao: boolean = true;
 
-  constructor(private firebase: FirebaseService, private router: Router, private alertController: AlertController) {}
+  constructor(
+    private firebase: FirebaseService,
+    private router: Router,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.jogo = history.state.jogo;
@@ -47,7 +51,7 @@ export class DetalharPage implements OnInit {
     ) {
       this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
     } else {
-      this.presentAlert('Sucesso', 'Contato Cadastrado!');
+      this.presentAlert('Sucesso', 'Jogo Cadastrado!');
       let novo: Jogo = new Jogo(this.nome, this.descricao);
       novo.genero = this.genero;
       novo.avaliacao = this.avaliacao;
