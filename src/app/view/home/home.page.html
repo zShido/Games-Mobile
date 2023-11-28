@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let jogo of lista_jogos;">
-    <ion-item (click)="editar(jogo)">
+  <ion-list>
+    <ion-item *ngFor="let jogo of lista_jogos;" (click)="editar(jogo)">
       <ion-label>
         <strong>{{jogo.nome}}</strong><br />
         <span class="info-jogo">Gênero: {{[jogo.genero]}}</span> <br />

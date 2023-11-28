@@ -27,15 +27,17 @@
     --background: transparent; // Deixa o background transparente para evitar problemas de sobreposição
     background-color: indigo;
     border-radius: 20px;
-    margin-bottom: 20px;
-    padding-left: 20px; // Dá um espaçamento interno à esquerda
-    padding-right: 20px; // Dá um espaçamento interno à direita
+    margin-bottom: 10px;
+    //padding-left: 20px; // Dá um espaçamento interno à esquerda
+    //padding-right: 20px; // Dá um espaçamento interno à direita
 
     // Tentativa de corrigir problemas visuais
-    box-shadow: none;
+    //box-shadow: none;
     border: none;
     margin-top: 10px;
     margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   ion-label {
