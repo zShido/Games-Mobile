@@ -8,10 +8,10 @@
   <ion-list>
     <ion-item *ngFor="let jogo of lista_jogos" (click)="editar(jogo)">
       <ion-avatar slot="end" *ngIf="jogo.downloadURL != null">
-        <img src="{{jogo.downloadURL}}"/>
+        <img src="{{jogo.downloadURL}}" />
       </ion-avatar>
       <ion-avatar slot="end" *ngIf="jogo.downloadURL == null">
-        <img src="assets/icon/image.jpg"/>
+        <img src="assets/icon/image.jpg" />
       </ion-avatar>
       <ion-label>
         <strong>{{jogo.nome}}</strong><br />
@@ -23,6 +23,6 @@
   </ion-list>
 
   <ion-button (click)="irParaCadastrar()">
-    Adicionar Jogo<ion-icon name="game-controller-outline"></ion-icon> 
+    Adicionar Jogo<ion-icon name="game-controller-outline"></ion-icon>
   </ion-button>
 </ion-content>

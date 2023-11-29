@@ -19,7 +19,11 @@ export class DetalharPage implements OnInit {
   public imagem!: any;
   edicao: boolean = true;
 
-  constructor(private router: Router, private firebase: FirebaseService, private alertController: AlertController) {}
+  constructor(
+    private router: Router,
+    private firebase: FirebaseService,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.jogo = history.state.jogo;
