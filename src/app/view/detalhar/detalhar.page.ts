@@ -12,22 +12,19 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
 export class DetalharPage implements OnInit {
   jogo!: Jogo;
   nome!: string;
-  descricao!: string;
+  plataforma!: string;
   genero!: Genero;
   avaliacao!: number;
   preco!: number;
+  public imagem!: any;
   edicao: boolean = true;
 
-  constructor(
-    private firebase: FirebaseService,
-    private router: Router,
-    private alertController: AlertController
-  ) {}
+  constructor(private router: Router, private firebase: FirebaseService, private alertController: AlertController) {}
 
   ngOnInit() {
     this.jogo = history.state.jogo;
     this.nome = this.jogo.nome;
-    this.descricao = this.jogo.descricao;
+    this.plataforma = this.jogo.plataforma;
     this.genero = this.jogo.genero;
     this.avaliacao = this.jogo.avaliacao;
     this.preco = this.jogo.preco;
@@ -41,22 +38,34 @@ export class DetalharPage implements OnInit {
     }
   }
 
+  uploadFile(imagem: any) {
+    this.imagem = imagem.files;
+  }
+
   editar() {
     if (
       !this.nome ||
-      !this.descricao ||
+      !this.plataforma ||
       !this.avaliacao ||
       !this.preco ||
       !this.genero
     ) {
       this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
     } else {
-      this.presentAlert('Sucesso', 'Jogo Alterado!');
-      let novo: Jogo = new Jogo(this.nome, this.descricao);
-      novo.genero = this.genero;
-      novo.avaliacao = this.avaliacao;
-      novo.preco = this.preco;
-      this.firebase.update(novo, this.jogo.id);
+      let novo: Jogo = new Jogo(
+        this.nome,
+        this.plataforma,
+        this.genero,
+        this.avaliacao,
+        this.preco
+      );
+      novo.id = this.jogo.id;
+      if (this.imagem) {
+        this.firebase.uploadImage(this.imagem, novo);
+      } else {
+        this.firebase.update(novo, this.jogo.id);
+      }
+
       this.router.navigate(['/home']);
     }
   }

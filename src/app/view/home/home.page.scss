@@ -42,7 +42,7 @@
 
   ion-label {
     font-family: "Press Start 2P", cursive;
-    font-size: 0.9rem;
+    font-size: 0.6em;
     flex: none;
     color: rgba(255, 255, 0, 1);
     width: 100%;
@@ -69,23 +69,30 @@
     color: yellow;
   }
 
-  .access-button {
+  /*.access-button {
     display: block;
-    width: 80%; /* Faz o botão ocupar 80% da largura da tela */
-    margin: 20px auto; /* Centraliza o botão horizontalmente e adiciona margem em cima e embaixo */
+    width: 80%; /* Faz o botão ocupar 80% da largura da tela //
+    margin: 20px auto; // Centraliza o botão horizontalmente e adiciona margem em cima e embaixo //
     padding: 10px 0;
     text-align: center;
     background: dodgerblue;
     border-radius: 20px;
     color: yellow;
     font-family: "Press Start 2P", cursive;
-    border: none; /* Remove qualquer borda padrão do botão */
+    border: none; // Remove qualquer borda padrão do botão //
     font-size: 1rem;
-  }
+  }*/
 
-  .access-button ion-icon {
-    margin-right: 10px;
-    vertical-align: middle;
+  ion-button {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 20px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 1rem;
+
+    --background: dodgerblue;
+    --color: yellow;
   }
 
   ion-list {
@@ -100,7 +107,7 @@
   }
 
   strong {
-    font-size: initial;
+    font-size: 1.2em;
     margin-bottom: 10px;
   }
 

@@ -13,30 +13,16 @@
       <ion-toggle (ionChange)="habilitarEdicao()">Habilitar Edição</ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-input
-        label="Nome:"
-        placeholder="Insira o nome do Jogo"
-        [(ngModel)]="nome"
-        disabled="{{edicao}}"
-      ></ion-input>
+      <ion-input label="Nome:" placeholder="Insira o nome do jogo" [(ngModel)]="nome" disabled="{{edicao}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input
-        label="Descrição:"
-        placeholder="Insira a Descricao do Jogo"
-        [(ngModel)]="descricao"
-        disabled="{{edicao}}"
-      ></ion-input>
+      <ion-input label="Plataforma:" placeholder="Insira a plataforma" [(ngModel)]="plataforma"
+        disabled="{{edicao}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-select
-        label="Gênero:"
-        placeholder="Selecione o Genero"
-        [(ngModel)]="genero"
-        disabled="{{edicao}}"
-      >
+      <ion-select label="Gênero:" placeholder="Selecione" [(ngModel)]="genero" disabled="{{edicao}}">
         <ion-select-option value="ACAO">Acao</ion-select-option>
         <ion-select-option value="TERROR">Terror</ion-select-option>
         <ion-select-option value="TIRO">Tiro</ion-select-option>
@@ -46,38 +32,27 @@
     </ion-item>
 
     <ion-item>
-      <ion-input
-        label="Avaliação:"
-        placeholder="Insira a Nota do Jogo"
-        [(ngModel)]="avaliacao"
-        type="number"
-        disabled="{{edicao}}"
-      ></ion-input>
+      <ion-input label="Avaliação:" placeholder="Insira a nota do jogo" [(ngModel)]="avaliacao" type="number"
+        disabled="{{edicao}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input
-        label="Preço:"
-        placeholder="Insira o preco do Jogo"
-        [(ngModel)]="preco"
-        type="number"
-        disabled="{{edicao}}"
-      ></ion-input>
+      <ion-input label="Preço:" placeholder="Insira o preço do jogo" [(ngModel)]="preco" type="number"
+        disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="jogo.downloadURL != null">
+      <img src="{{jogo.downloadURL}}" />
+    </ion-item>
+    <ion-item disabled="{{edicao}}">
+      <ion-label>Imagem:</ion-label>
+      <ion-button class="addImagem" slot="end">
+        <input type="file" (change)="uploadFile($event.target)" />
+      </ion-button>
     </ion-item>
 
-    <ion-button
-      expand="block"
-      (click)="editar()"
-      color="sucess"
-      disabled="{{edicao}}"
-      >Salvar</ion-button
-    >
-    <ion-button
-      expand="block"
-      (click)="excluir()"
-      color="danger"
-      disabled="{{edicao}}"
-      >Excluir</ion-button
-    >
   </ion-list>
+
+  <ion-button expand="block" (click)="editar()" color="success" disabled="{{edicao}}">Salvar</ion-button>
+  <ion-button expand="block" (click)="excluir()" color="danger" disabled="{{edicao}}">Excluir</ion-button>
+
 </ion-content>

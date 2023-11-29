@@ -6,7 +6,13 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let jogo of lista_jogos;" (click)="editar(jogo)">
+    <ion-item *ngFor="let jogo of lista_jogos" (click)="editar(jogo)">
+      <ion-avatar slot="end" *ngIf="jogo.downloadURL != null">
+        <img src="{{jogo.downloadURL}}"/>
+      </ion-avatar>
+      <ion-avatar slot="end" *ngIf="jogo.downloadURL == null">
+        <img src="assets/icon/image.jpg"/>
+      </ion-avatar>
       <ion-label>
         <strong>{{jogo.nome}}</strong><br />
         <span class="info-jogo">Gênero: {{[jogo.genero]}}</span> <br />
@@ -16,7 +22,7 @@
     </ion-item>
   </ion-list>
 
-  <button class="access-button" (click)="irParaCadastrar()">
+  <ion-button (click)="irParaCadastrar()">
     Adicionar Jogo<ion-icon name="game-controller-outline"></ion-icon> 
-  </button>
+  </ion-button>
 </ion-content>

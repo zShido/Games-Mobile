@@ -9,20 +9,23 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  lista_jogos: Jogo[] = [];
+  public lista_jogos: Jogo[] = [];
   public Genero = Genero;
+
   constructor(
     private router: Router,
     private firebaseService: FirebaseService
   ) {
-    this.firebaseService.read().subscribe((res) => {
-      this.lista_jogos = res.map((jogo) => {
+
+    this.firebaseService.read()
+    .subscribe(res => {
+      this.lista_jogos = res.map(jogo => {
         return {
           id: jogo.payload.doc.id,
-          ...(jogo.payload.doc.data() as any),
+          ... jogo.payload.doc.data() as any
         } as Jogo;
-      });
-    });
+      })
+    })
   }
 
   irParaCadastrar() {

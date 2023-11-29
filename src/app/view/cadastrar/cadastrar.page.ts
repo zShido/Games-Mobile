@@ -11,11 +11,12 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   styleUrls: ['./cadastrar.page.scss'],
 })
 export class CadastrarPage implements OnInit {
-  nome!: string;
-  descricao!: string;
-  genero!: Genero;
-  avaliacao!: number;
-  preco!: number;
+  public nome!: string;
+  public plataforma!: string;
+  public genero!: Genero;
+  public avaliacao!: number;
+  public preco!: number;
+  public imagem: any;
   lista_jogos: Jogo[] = [];
 
   constructor(
@@ -26,16 +27,33 @@ export class CadastrarPage implements OnInit {
 
   ngOnInit() {}
 
+  uploadFile(imagem: any) {
+    this.imagem = imagem.files;
+  }
+
   cadastrar() {
-    if (!this.nome || !this.descricao) {
+    if (
+      !this.nome ||
+      !this.plataforma ||
+      !this.avaliacao ||
+      !this.preco ||
+      !this.genero
+    ) {
       this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
     } else {
+      let novo: Jogo = new Jogo(
+        this.nome,
+        this.plataforma,
+        this.genero,
+        this.avaliacao,
+        this.preco
+      );
+      if (this.imagem) {
+        this.firebase.uploadImage(this.imagem, novo);
+      } else {
+        this.firebase.create(novo);
+      }
       this.presentAlert('Sucesso', 'Jogo Cadastrado com Sucesso!');
-      let novo: Jogo = new Jogo(this.nome, this.descricao);
-      novo.genero = this.genero;
-      novo.avaliacao = this.avaliacao;
-      novo.preco = this.preco;
-      this.firebase.create(novo);
       this.router.navigate(['/home']);
     }
   }
