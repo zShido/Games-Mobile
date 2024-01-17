@@ -15,8 +15,10 @@ export class FirebaseService {
     private storage: AngularFireStorage
   ) {}
 
-  read() {
-    return this.firestore.collection(this.PATH).snapshotChanges();
+  read(uid: string) {
+    return this.firestore
+      .collection(this.PATH, (ref) => ref.where('uid', '==', uid))
+      .snapshotChanges();
   }
 
   create(jogo: Jogo) {
@@ -37,6 +39,7 @@ export class FirebaseService {
       avaliacao: jogo.avaliacao,
       preco: jogo.preco,
       downloadURL: jogo.downloadURL,
+      uid: jogo.uid,
     });
   }
 
@@ -47,6 +50,7 @@ export class FirebaseService {
       genero: jogo.genero,
       avaliacao: jogo.avaliacao,
       preco: jogo.preco,
+      uid: jogo.uid,
     });
   }
 
@@ -58,11 +62,12 @@ export class FirebaseService {
       avaliacao: jogo.avaliacao,
       preco: jogo.preco,
       downloadURL: jogo.downloadURL,
+      uid: jogo.uid,
     });
   }
 
-  delete(id: string) {
-    return this.firestore.collection(this.PATH).doc(id).delete();
+  delete(jogo: Jogo) {
+    return this.firestore.collection(this.PATH).doc(jogo.id).delete();
   }
 
   uploadImage(imagem: any, jogo: Jogo) {

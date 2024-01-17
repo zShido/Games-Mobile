@@ -33,9 +33,18 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'welcome',
+    path: 'signin',
     loadChildren: () =>
-      import('./view/welcome/welcome.module').then((m) => m.WelcomePageModule),
+      import('./view/usuarios/signin/signin.module').then(
+        (m) => m.SigninPageModule
+      ),
+  },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./view/usuarios/signup/signup.module').then(
+        (m) => m.SignupPageModule
+      ),
   },
 ];
 

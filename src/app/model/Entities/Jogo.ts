@@ -6,8 +6,15 @@ export default class Jogo {
   private _avaliacao!: number;
   private _preco!: number;
   private _downloadURL: any;
+  private _uid!: string;
 
-  constructor(nome: string, plataforma: string, genero: Genero, avaliacao: number, preco: number) {
+  constructor(
+    nome: string,
+    plataforma: string,
+    genero: Genero,
+    avaliacao: number,
+    preco: number
+  ) {
     this._nome = nome;
     this._plataforma = plataforma;
     this._avaliacao = avaliacao;
@@ -63,6 +70,13 @@ export default class Jogo {
 
   set downloadURL(downloadURL: any) {
     this._downloadURL = downloadURL;
+  }
+
+  public get uid(): string {
+    return this._uid;
+  }
+  public set uid(value: string) {
+    this._uid = value;
   }
 }
 export enum Genero {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
+import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
@@ -16,14 +17,18 @@ export class DetalharPage implements OnInit {
   genero!: Genero;
   avaliacao!: number;
   preco!: number;
-  public imagem!: any;
   edicao: boolean = true;
+  public imagem!: any;
+  public user: any;
 
   constructor(
     private router: Router,
     private firebase: FirebaseService,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private authService: AuthService
+  ) {
+    this.user = this.authService.getUserLogged();
+  }
 
   ngOnInit() {
     this.jogo = history.state.jogo;
@@ -64,6 +69,7 @@ export class DetalharPage implements OnInit {
         this.preco
       );
       novo.id = this.jogo.id;
+      novo.uid = this.user.uid; // adiciona o uid do usuário logado
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
       } else {
@@ -75,7 +81,7 @@ export class DetalharPage implements OnInit {
   }
 
   excluir() {
-    this.firebase.delete(this.jogo.id);
+    this.firebase.delete(this.jogo);
     this.router.navigate(['/home']);
   }
 

@@ -3,6 +3,7 @@ import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
+import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
@@ -18,12 +19,16 @@ export class CadastrarPage implements OnInit {
   public preco!: number;
   public imagem: any;
   lista_jogos: Jogo[] = [];
+  public user: any;
 
   constructor(
     private firebase: FirebaseService,
     private alertController: AlertController,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.user = this.authService.getUserLogged();
+  }
 
   ngOnInit() {}
 
@@ -48,6 +53,7 @@ export class CadastrarPage implements OnInit {
         this.avaliacao,
         this.preco
       );
+      novo.uid = this.user.uid; // adiciona o uid do usuário logado
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
       } else {

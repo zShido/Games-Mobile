@@ -10,6 +10,6 @@ export class WelcomePage {
   constructor(private navCtrl: NavController) {}
 
   acessarLista() {
-    this.navCtrl.navigateForward('/home');
+    this.navCtrl.navigateForward('/signin');
   }
 }
