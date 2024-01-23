@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   browserPopupRedirectResolver,
   GoogleAuthProvider,
+  GithubAuthProvider,
   User,
 } from 'firebase/auth';
 
@@ -67,6 +68,12 @@ export class AuthService {
 
   public signInWithGoogle() {
     const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    return signInWithPopup(auth, provider, browserPopupRedirectResolver);
+  }
+
+  public signInWithGitHub() {
+    const provider = new GithubAuthProvider();
     const auth = getAuth();
     return signInWithPopup(auth, provider, browserPopupRedirectResolver);
   }
