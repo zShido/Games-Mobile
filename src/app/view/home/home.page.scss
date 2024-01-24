@@ -61,7 +61,6 @@
     margin: 20px auto;
     border-radius: 20px;
     font-family: "Press Start 2P", cursive;
-    font-size: 1rem;
 
     --background: dodgerblue;
     --color: yellow;
@@ -74,7 +73,7 @@
 
   ion-title {
     font-family: "Press Start 2P";
-    font-size: 0.8em; // Diminui um pouco a fonte para tentar acomodá-la melhor
+    font-size: 0.8em; 
     color: yellow;
   }
 
@@ -87,7 +86,7 @@
     color: rgba(255, 255, 0, 0.6); // Cor amarela com 60% de opacidade
   }
 
-  .game-icon{
+  .game-icon {
     font-size: 25px;
     margin-left: 10px;
   }

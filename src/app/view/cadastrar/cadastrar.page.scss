@@ -1,12 +1,6 @@
 :host {
   font-family: "Press Start 2P", cursive;
 
-  ion-header {
-    font-family: "Press Start 2P", cursive;
-    font-size: 1em;
-    text-align: left;
-  }
-
   ion-content {
     --background: #002240;
     font-family: "Press Start 2P", cursive;
@@ -19,12 +13,10 @@
     text-align: left;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
   }
 
   ion-list {
     background: transparent;
-    margin-top: 10px;
   }
 
   ion-item {
@@ -55,6 +47,7 @@
     font-family: "Press Start 2P";
     font-size: 0.7rem;
     color: yellow;
+    padding-inline: 0;
   }
 
   ion-button[expand="block"] {
@@ -63,12 +56,11 @@
     margin: 20px auto;
     border-radius: 20px;
     font-family: "Press Start 2P", cursive;
-    font-size: 1rem;
 
     --background: dodgerblue;
     --color: yellow;
   }
-  
+
   .addImagem {
     color: yellow;
     font-family: "Press Start 2P", cursive;
