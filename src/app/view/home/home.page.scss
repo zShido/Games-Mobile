@@ -1,12 +1,6 @@
 :host {
   font-family: "Press Start 2P", cursive;
 
-  ion-header {
-    font-family: "Press Start 2P", cursive;
-    font-size: 1em;
-    text-align: left;
-  }
-
   ion-content {
     --background: #002240; // Cor azul petróleo
     font-family: "Press Start 2P", cursive; // Fonte retro pixel
@@ -17,9 +11,6 @@
     --background: dodgerblue; /* Gradiente azul celeste */
     border-radius: 20px 20px 0 0;
     text-align: left; // para alinhar o título à esquerda
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
   }
 
   ion-item {
@@ -73,7 +64,7 @@
 
   ion-title {
     font-family: "Press Start 2P";
-    font-size: 0.8em; 
+    font-size: 0.8em;
     color: yellow;
   }
 
