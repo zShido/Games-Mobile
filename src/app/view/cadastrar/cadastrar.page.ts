@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/common/alert.service';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
 import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
@@ -25,7 +26,8 @@ export class CadastrarPage implements OnInit {
     private firebase: FirebaseService,
     private alertController: AlertController,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.user = this.authService.getUserLogged();
   }
@@ -38,14 +40,12 @@ export class CadastrarPage implements OnInit {
 
   cadastrar() {
     if (
-      !this.nome ||
-      !this.plataforma ||
-      !this.avaliacao ||
-      !this.preco ||
-      !this.genero
+      this.nome &&
+      this.plataforma &&
+      this.avaliacao &&
+      this.preco &&
+      this.genero
     ) {
-      this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
-    } else {
       let novo: Jogo = new Jogo(
         this.nome,
         this.plataforma,
@@ -59,17 +59,10 @@ export class CadastrarPage implements OnInit {
       } else {
         this.firebase.create(novo);
       }
-      this.presentAlert('Sucesso', 'Jogo Cadastrado com Sucesso!');
+      this.alertService.presentAlert('Sucesso', 'Jogo cadastrado com sucesso!');
       this.router.navigate(['/home']);
+    } else {
+      this.alertService.presentAlert('Erro', 'Campos obrigatórios!');
     }
-  }
-
-  async presentAlert(subHeader: string, message: string) {
-    const alert = await this.alertController.create({
-      header: 'Lista de Jogos',
-      message: message,
-      buttons: ['OK'],
-    });
-    await alert.present();
   }
 }

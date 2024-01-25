@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/common/alert.service';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
 import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
@@ -25,7 +26,8 @@ export class DetalharPage implements OnInit {
     private router: Router,
     private firebase: FirebaseService,
     private alertController: AlertController,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.user = this.authService.getUserLogged();
   }
@@ -59,7 +61,10 @@ export class DetalharPage implements OnInit {
       !this.preco ||
       !this.genero
     ) {
-      this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
+      this.alertService.presentAlert(
+        'Erro',
+        'Todos os campos são obrigatórios!'
+      );
     } else {
       let novo: Jogo = new Jogo(
         this.nome,
@@ -75,7 +80,7 @@ export class DetalharPage implements OnInit {
       } else {
         this.firebase.update(novo, this.jogo.id);
       }
-
+      this.alertService.presentAlert('Sucesso', 'Jogo alterado com sucesso!');
       this.router.navigate(['/home']);
     }
   }
@@ -83,15 +88,5 @@ export class DetalharPage implements OnInit {
   excluir() {
     this.firebase.delete(this.jogo);
     this.router.navigate(['/home']);
-  }
-
-  async presentAlert(subHeader: string, message: string) {
-    const alert = await this.alertController.create({
-      header: 'Game List',
-      subHeader: subHeader,
-      message: message,
-      buttons: ['OK'],
-    });
-    await alert.present();
   }
 }
