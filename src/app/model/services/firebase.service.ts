@@ -28,6 +28,7 @@ export class FirebaseService {
       genero: jogo.genero,
       avaliacao: jogo.avaliacao,
       preco: jogo.preco,
+      uid: jogo.uid,
     });
   }
 
