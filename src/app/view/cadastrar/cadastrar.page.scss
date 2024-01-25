@@ -4,15 +4,12 @@
   ion-content {
     --background: #002240;
     font-family: "Press Start 2P", cursive;
-    color: yellow;
   }
 
   ion-toolbar {
     --background: dodgerblue;
     border-radius: 20px 20px 0 0;
     text-align: left;
-    display: flex;
-    justify-content: flex-start;
   }
 
   ion-list {
@@ -70,6 +67,7 @@
   ion-back-button {
     --color: yellow;
   }
+
   ion-icon {
     font-size: 25px;
     margin-left: 10px;
