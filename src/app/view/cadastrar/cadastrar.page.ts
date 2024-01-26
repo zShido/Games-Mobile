@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { AlertService } from 'src/app/common/alert.service';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
 import { AuthService } from 'src/app/model/services/auth.service';
@@ -13,56 +17,67 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   styleUrls: ['./cadastrar.page.scss'],
 })
 export class CadastrarPage implements OnInit {
-  public nome!: string;
-  public plataforma!: string;
-  public genero!: Genero;
-  public avaliacao!: number;
-  public preco!: number;
+  public formCadastro: FormGroup;
   public imagem: any;
-  lista_jogos: Jogo[] = [];
   public user: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private firebase: FirebaseService,
-    private alertController: AlertController,
     private router: Router,
     private authService: AuthService,
     private alertService: AlertService
   ) {
     this.user = this.authService.getUserLogged();
+
+    this.formCadastro = new FormGroup({
+      nome: new FormControl(''),
+      plataforma: new FormControl(''),
+      genero: new FormControl(''),
+      avaliacao: new FormControl(''),
+      preco: new FormControl(''),
+    });
+    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formCadastro = this.formBuilder.group({
+      nome: ['', Validators.required],
+      plataforma: ['', Validators.required],
+      genero: ['', Validators.required],
+      avaliacao: ['', Validators.required],
+      preco: ['', Validators.required],
+    });
+  }
 
   uploadFile(imagem: any) {
     this.imagem = imagem.files;
   }
 
   cadastrar() {
-    if (
-      this.nome &&
-      this.plataforma &&
-      this.avaliacao &&
-      this.preco &&
-      this.genero
-    ) {
+    if (this.formCadastro.valid) {
       let novo: Jogo = new Jogo(
-        this.nome,
-        this.plataforma,
-        this.genero,
-        this.avaliacao,
-        this.preco
+        this.formCadastro.value.nome,
+        this.formCadastro.value.plataforma,
+        this.formCadastro.value.genero,
+        this.formCadastro.value.avaliacao,
+        this.formCadastro.value.preco
       );
-      novo.uid = this.user.uid; // adiciona o uid do usuário logado
+      novo.uid = this.user.uid;
+
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
       } else {
         this.firebase.create(novo);
       }
+
       this.alertService.presentAlert('Sucesso', 'Jogo cadastrado com sucesso!');
       this.router.navigate(['/home']);
     } else {
-      this.alertService.presentAlert('Erro', 'Campos obrigatórios!');
+      this.alertService.presentAlert(
+        'Erro',
+        'Preencha todos os campos obrigatórios corretamente!'
+      );
     }
   }
 }
