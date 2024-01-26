@@ -35,21 +35,18 @@
     line-height: 1.5em;
   }
 
-  ion-fab-button {
-    --background: linear-gradient(
-      to right,
-      #b0e0e6,
-      #87cefa
-    ); // Gradiente azul celeste
-    border-radius: 20px;
-    color: yellow;
-  }
+  //Mudança de ion-button para ion-fab-button
+  // ion-button {
+  //   --background: linear-gradient(
+  //     to right,
+  //     #b0e0e6,
+  //     #87cefa
+  //   ); // Gradiente azul celeste
+  //   border-radius: 20px;
+  //   color: yellow;
+  // }
 
-  ion-button {
-    display: block;
-    width: 80%;
-    margin: 20px auto;
-    border-radius: 20px;
+  .add-game {
     font-family: "Press Start 2P", cursive;
     --background: dodgerblue;
     --color: yellow;
@@ -57,7 +54,6 @@
 
   ion-list {
     background: transparent;
-    //margin-top: 10px;
   }
 
   ion-title {
@@ -76,8 +72,11 @@
   }
 
   .game-icon {
-    font-size: 25px;
-    margin-left: 10px;
+    font-size: 30px;
+  }
+
+  .add-icon {
+    font-size: small;
   }
 
   ion-avatar {
