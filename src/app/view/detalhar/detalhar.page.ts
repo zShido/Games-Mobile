@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/common/alert.service';
-import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
+import Jogo from 'src/app/model/Entities/Jogo';
 import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
@@ -13,40 +13,44 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
 })
 export class DetalharPage implements OnInit {
   jogo!: Jogo;
-  nome!: string;
-  plataforma!: string;
-  genero!: Genero;
-  avaliacao!: number;
-  preco!: number;
   edicao: boolean = true;
   public imagem!: any;
   public user: any;
+  public formDetalhes!: FormGroup;
 
   constructor(
     private router: Router,
     private firebase: FirebaseService,
-    private alertController: AlertController,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private formBuilder: FormBuilder
   ) {
     this.user = this.authService.getUserLogged();
   }
 
   ngOnInit() {
     this.jogo = history.state.jogo;
-    this.nome = this.jogo.nome;
-    this.plataforma = this.jogo.plataforma;
-    this.genero = this.jogo.genero;
-    this.avaliacao = this.jogo.avaliacao;
-    this.preco = this.jogo.preco;
+    this.formDetalhes = this.formBuilder.group({
+      nome: [this.jogo.nome, Validators.required],
+      plataforma: [this.jogo.plataforma, Validators.required],
+      genero: [this.jogo.genero, Validators.required],
+      avaliacao: [
+        this.jogo.avaliacao,
+        [Validators.required, Validators.pattern(/^(10|\d(\.\d{1})?)$/)],
+      ],
+      preco: [
+        this.jogo.preco,
+        [
+          Validators.required,
+          Validators.pattern(/^\d+\.\d{2}$/),
+          Validators.min(0),
+        ],
+      ],
+    });
   }
 
   habilitarEdicao() {
-    if (this.edicao) {
-      this.edicao = false;
-    } else {
-      this.edicao = true;
-    }
+    this.edicao = !this.edicao;
   }
 
   uploadFile(imagem: any) {
@@ -54,34 +58,31 @@ export class DetalharPage implements OnInit {
   }
 
   editar() {
-    if (
-      !this.nome ||
-      !this.plataforma ||
-      !this.avaliacao ||
-      !this.preco ||
-      !this.genero
-    ) {
-      this.alertService.presentAlert(
-        'Erro',
-        'Todos os campos são obrigatórios!'
+    if (this.formDetalhes.valid) {
+      const novo: Jogo = new Jogo(
+        this.formDetalhes.value.nome,
+        this.formDetalhes.value.plataforma,
+        this.formDetalhes.value.genero,
+        this.formDetalhes.value.avaliacao,
+        this.formDetalhes.value.preco
       );
-    } else {
-      let novo: Jogo = new Jogo(
-        this.nome,
-        this.plataforma,
-        this.genero,
-        this.avaliacao,
-        this.preco
-      );
+
       novo.id = this.jogo.id;
-      novo.uid = this.user.uid; // adiciona o uid do usuário logado
+      novo.uid = this.user.uid;
+
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
       } else {
         this.firebase.update(novo, this.jogo.id);
       }
+
       this.alertService.presentAlert('Sucesso', 'Jogo alterado com sucesso!');
       this.router.navigate(['/home']);
+    } else {
+      this.alertService.presentAlert(
+        'Erro',
+        'Preencha todos os campos obrigatórios corretamente!'
+      );
     }
   }
 

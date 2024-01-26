@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/common/alert.service';
-import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
+import Jogo from 'src/app/model/Entities/Jogo';
 import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
@@ -37,7 +37,6 @@ export class CadastrarPage implements OnInit {
       avaliacao: new FormControl(''),
       preco: new FormControl(''),
     });
-    
   }
 
   ngOnInit() {
@@ -45,8 +44,18 @@ export class CadastrarPage implements OnInit {
       nome: ['', Validators.required],
       plataforma: ['', Validators.required],
       genero: ['', Validators.required],
-      avaliacao: ['', Validators.required],
-      preco: ['', Validators.required],
+      avaliacao: [
+        '',
+        [Validators.required, Validators.pattern(/^(10|\d(\.\d{1})?)$/)],
+      ],
+      preco: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^\d+(\.\d{0,2})$/),
+          Validators.min(0),
+        ],
+      ],
     });
   }
 
