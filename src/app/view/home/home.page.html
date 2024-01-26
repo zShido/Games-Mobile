@@ -5,8 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let jogo of lista_jogos;">
-    <ion-item (click)="editar(jogo)">
+  <ion-list>
+    <ion-item *ngFor="let jogo of lista_jogos" (click)="editar(jogo)">
+      <ion-avatar slot="end" *ngIf="jogo.downloadURL != null">
+        <img src="{{jogo.downloadURL}}" />
+      </ion-avatar>
+      <ion-avatar slot="end" *ngIf="jogo.downloadURL == null">
+        <img src="assets/icon/image.jpg" />
+      </ion-avatar>
       <ion-label>
         <strong>{{jogo.nome}}</strong><br />
         <span class="info-jogo">Gênero: {{[jogo.genero]}}</span> <br />
@@ -16,7 +22,23 @@
     </ion-item>
   </ion-list>
 
-  <button class="access-button" (click)="irParaCadastrar()">
-    Adicionar Jogo<ion-icon name="game-controller-outline"></ion-icon> 
-  </button>
+  <!-- <ion-button (click)="irParaCadastrar()">
+    Adicionar <ion-icon class="game-icon" name="game-controller-outline"></ion-icon>
+  </ion-button> -->
+
 </ion-content>
+
+<ion-footer>
+  <ion-fab horizontal="start" vertical="bottom">
+    <ion-fab-button (click)="logout()" color="danger">
+      <ion-icon name="log-out-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="bottom">
+    <ion-fab-button class="add-game" (click)="irParaCadastrar()">
+      <ion-icon class="game-icon" name="game-controller-sharp">></ion-icon>
+      <ion-icon class="add-icon" name="add-circle-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

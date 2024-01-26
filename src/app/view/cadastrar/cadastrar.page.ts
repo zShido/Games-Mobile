@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/common/alert.service';
 import Jogo, { Genero } from 'src/app/model/Entities/Jogo';
+import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
@@ -11,41 +17,67 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   styleUrls: ['./cadastrar.page.scss'],
 })
 export class CadastrarPage implements OnInit {
-  nome!: string;
-  descricao!: string;
-  genero!: Genero;
-  avaliacao!: number;
-  preco!: number;
-  lista_jogos: Jogo[] = [];
+  public formCadastro: FormGroup;
+  public imagem: any;
+  public user: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private firebase: FirebaseService,
-    private alertController: AlertController,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService,
+    private alertService: AlertService
+  ) {
+    this.user = this.authService.getUserLogged();
 
-  ngOnInit() {}
-
-  cadastrar() {
-    if (!this.nome || !this.descricao) {
-      this.presentAlert('Erro', 'Todos os campos são obrigatórios!');
-    } else {
-      this.presentAlert('Sucesso', 'Jogo Cadastrado com Sucesso!');
-      let novo: Jogo = new Jogo(this.nome, this.descricao);
-      novo.genero = this.genero;
-      novo.avaliacao = this.avaliacao;
-      novo.preco = this.preco;
-      this.firebase.create(novo);
-      this.router.navigate(['/home']);
-    }
+    this.formCadastro = new FormGroup({
+      nome: new FormControl(''),
+      plataforma: new FormControl(''),
+      genero: new FormControl(''),
+      avaliacao: new FormControl(''),
+      preco: new FormControl(''),
+    });
+    
   }
 
-  async presentAlert(subHeader: string, message: string) {
-    const alert = await this.alertController.create({
-      header: 'Lista de Jogos',
-      message: message,
-      buttons: ['OK'],
+  ngOnInit() {
+    this.formCadastro = this.formBuilder.group({
+      nome: ['', Validators.required],
+      plataforma: ['', Validators.required],
+      genero: ['', Validators.required],
+      avaliacao: ['', Validators.required],
+      preco: ['', Validators.required],
     });
-    await alert.present();
+  }
+
+  uploadFile(imagem: any) {
+    this.imagem = imagem.files;
+  }
+
+  cadastrar() {
+    if (this.formCadastro.valid) {
+      let novo: Jogo = new Jogo(
+        this.formCadastro.value.nome,
+        this.formCadastro.value.plataforma,
+        this.formCadastro.value.genero,
+        this.formCadastro.value.avaliacao,
+        this.formCadastro.value.preco
+      );
+      novo.uid = this.user.uid;
+
+      if (this.imagem) {
+        this.firebase.uploadImage(this.imagem, novo);
+      } else {
+        this.firebase.create(novo);
+      }
+
+      this.alertService.presentAlert('Sucesso', 'Jogo cadastrado com sucesso!');
+      this.router.navigate(['/home']);
+    } else {
+      this.alertService.presentAlert(
+        'Erro',
+        'Preencha todos os campos obrigatórios corretamente!'
+      );
+    }
   }
 }

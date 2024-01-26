@@ -2,18 +2,17 @@
   font-family: "Press Start 2P", cursive;
 
   ion-content {
-    --background: #002240;
-    font-family: "Press Start 2P", cursive;
+    --background: #002240; // Cor azul petróleo
+    font-family: "Press Start 2P", cursive; // Fonte retro pixel
   }
 
   ion-toolbar {
     --background: dodgerblue;
     border-radius: 20px 20px 0 0;
-    text-align: left;
-  }
-
-  ion-list {
-    background: transparent;
+    text-align: left; // para alinhar o título à esquerda
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   ion-item {
@@ -30,10 +29,10 @@
   }
 
   ion-label,
-  ion-input,
-  ion-select {
+  ion-input {
     font-family: "Press Start 2P", cursive;
     font-size: 0.6rem;
+    flex: none;
     color: rgba(255, 255, 0, 1);
     width: 100%;
     line-height: 1.5em;
@@ -41,41 +40,29 @@
 
   ion-title {
     font-family: "Press Start 2P";
-    font-size: 0.7rem;
+    font-size: 0.7em;
     color: yellow;
-    padding-inline: 0;
   }
 
-  ion-button[expand="block"] {
+  ion-button {
     display: block;
     width: 80%;
     margin: 20px auto;
     border-radius: 20px;
     font-family: "Press Start 2P", cursive;
-
-    --background: dodgerblue;
-    --color: yellow;
-  }
-
-  .addImagem {
-    color: yellow;
-    font-family: "Press Start 2P", cursive;
-    width: 50%;
-  }
-
-  ion-back-button {
-    --color: yellow;
-  }
-
-  ion-icon {
-    font-size: 25px;
-    margin-left: 10px;
+    font-size: 0.8rem;
   }
 
   .error-message {
     margin-top: 10px;
     color: red;
     margin-left: 15px;
+    font-size: 0.7rem;
+  }
+
+  .signup-link {
+    display: block; /* Torna o elemento um bloco para aplicar largura e margens */
+    text-align: center;
     font-size: 0.7rem;
   }
 }

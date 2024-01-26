@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CadastrarPageRoutingModule } from './cadastrar-routing.module';
+import { SigninPageRoutingModule } from './signin-routing.module';
 
-import { CadastrarPage } from './cadastrar.page';
+import { SigninPage } from './signin.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CadastrarPageRoutingModule,
+    SigninPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [CadastrarPage]
+  declarations: [SigninPage]
 })
-export class CadastrarPageModule {}
+export class SigninPageModule {}

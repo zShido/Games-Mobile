@@ -7,10 +7,9 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./welcome.page.scss'],
 })
 export class WelcomePage {
-
   constructor(private navCtrl: NavController) {}
 
   acessarLista() {
-    this.navCtrl.navigateForward('/home'); // Supondo que sua página inicial seja '/home'
+    this.navCtrl.navigateForward('/signin');
   }
 }

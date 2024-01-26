@@ -1,0 +1,28 @@
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+ion-content {
+  --background: #002240; // Cor azul petróleo
+  font-family: "Press Start 2P", cursive; // Fonte retro pixel
+  color: yellow; // Cor amarela para todo o texto
+}
+
+.title-box {
+  background-color: #4b0082; // Cor azul índigo
+  padding: 16px;
+  border-radius: 20px;
+  color: yellow;
+}
+
+.access-button {
+  background: linear-gradient(to right, #b0e0e6, #87cefa);
+  border-radius: 20px;
+  color: yellow;
+  font-family: "Press Start 2P", cursive;
+  margin-top: 20px;
+}
