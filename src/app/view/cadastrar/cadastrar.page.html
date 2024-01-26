@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Cadastrar Novo Jogo</ion-title>
+    <ion-title>Cadastrar jogo</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,8 +25,8 @@
         class="error-message">Plataforma é obrigatória</div>
 
       <ion-item>
-        <ion-label>Gênero</ion-label>
-        <ion-select formControlName="genero" placeholder="Selecione">
+        <!-- <ion-label> Gênero </ion-label> essa opção desconfigurava o botão select, e o mesmo não ficava ajustado ao final do ion-item, sobrando espaço à direita -->
+        <ion-select label="Gênero" formControlName="genero" placeholder="Selecione">
           <ion-select-option value="ACAO">Ação</ion-select-option>
           <ion-select-option value="TERROR">Terror</ion-select-option>
           <ion-select-option value="TIRO">Tiro</ion-select-option>
@@ -50,7 +50,7 @@
       </ion-item>
       <div *ngIf="formCadastro.get('preco')?.touched && formCadastro.get('preco')?.errors?.['required']"
         class="error-message">Preço é obrigatório</div>
-        
+
       <ion-item>
         <ion-label>Imagem</ion-label>
         <ion-button class="addImagem" slot="end">
