@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
+import { AlertService } from 'src/app/common/alert.service';
 import Jogo from '../Entities/Jogo';
 
 @Injectable({
@@ -12,7 +13,8 @@ export class FirebaseService {
 
   constructor(
     private firestore: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private alertService: AlertService
   ) {}
 
   read(uid: string) {
@@ -93,6 +95,7 @@ export class FirebaseService {
             } else {
               this.updateWithAvatar(jogo, jogo.id);
             }
+            this.alertService.dismissLoader();
           });
         })
       )

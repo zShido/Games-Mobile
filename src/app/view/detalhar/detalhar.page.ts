@@ -36,13 +36,13 @@ export class DetalharPage implements OnInit {
       genero: [this.jogo.genero, Validators.required],
       avaliacao: [
         this.jogo.avaliacao,
-        [Validators.required, Validators.pattern(/^(10|\d(\.\d{1})?)$/)],
+        [Validators.required, Validators.pattern(/^(\d*\.)?\d+$/)],
       ],
       preco: [
         this.jogo.preco,
         [
           Validators.required,
-          Validators.pattern(/^\d+\.\d{2}$/),
+          Validators.pattern(/^\d+(\.\d{1,2})?$/),
           Validators.min(0),
         ],
       ],
@@ -50,7 +50,11 @@ export class DetalharPage implements OnInit {
   }
 
   habilitarEdicao() {
-    this.edicao = !this.edicao;
+    if (this.edicao) {
+      this.edicao = false;
+    } else {
+      this.edicao = true;
+    }
   }
 
   uploadFile(imagem: any) {
@@ -59,7 +63,8 @@ export class DetalharPage implements OnInit {
 
   editar() {
     if (this.formDetalhes.valid) {
-      const novo: Jogo = new Jogo(
+      this.alertService.simpleLoader();
+      let novo: Jogo = new Jogo(
         this.formDetalhes.value.nome,
         this.formDetalhes.value.plataforma,
         this.formDetalhes.value.genero,
@@ -72,12 +77,24 @@ export class DetalharPage implements OnInit {
 
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
+        this.alertService.presentAlert('Sucesso', 'Jogo salvo!');
+        this.router.navigate(['/home']);
       } else {
-        this.firebase.update(novo, this.jogo.id);
+        this.firebase
+          .update(novo, this.jogo.id)
+          .then(() => {
+            this.alertService.dismissLoader(); // Descarta o loader após a conclusão da atualização
+            this.alertService.presentAlert(
+              'Sucesso',
+              'Jogo alterado com sucesso!'
+            );
+            this.router.navigate(['/home']);
+          })
+          .catch((error) => {
+            this.alertService.dismissLoader(); // Descarta o loader em caso de erro
+            console.error('Erro ao atualizar o jogo', error);
+          });
       }
-
-      this.alertService.presentAlert('Sucesso', 'Jogo alterado com sucesso!');
-      this.router.navigate(['/home']);
     } else {
       this.alertService.presentAlert(
         'Erro',
