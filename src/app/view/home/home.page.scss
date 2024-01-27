@@ -35,15 +35,17 @@
     line-height: 1.5em;
   }
 
-  //Mudança de ion-button para ion-fab-button
+  // Substituição ion-button por ion-fab-button
   // ion-button {
-  //   --background: linear-gradient(
-  //     to right,
-  //     #b0e0e6,
-  //     #87cefa
-  //   ); // Gradiente azul celeste
+  //   display: block;
+  //   width: 80%;
+  //   margin: 20px auto;
   //   border-radius: 20px;
-  //   color: yellow;
+  //   font-family: "Press Start 2P", cursive;
+  //   font-size: 1rem;
+
+  //   --background: dodgerblue;
+  //   --color: yellow;
   // }
 
   .add-game {

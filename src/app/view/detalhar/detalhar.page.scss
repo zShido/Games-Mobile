@@ -70,4 +70,13 @@
   ion-back-button {
     --color: yellow;
   }
+
+  .error-message{
+    font-family: "Press Start 2P", cursive;
+    margin-top: 10px;
+    color: rgb(204, 5, 5);
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: x-small;
+  }
 }

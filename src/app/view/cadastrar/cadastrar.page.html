@@ -42,14 +42,20 @@
         <ion-input formControlName="avaliacao" type="number" placeholder="Insira a nota do jogo"></ion-input>
       </ion-item>
       <div *ngIf="formCadastro.get('avaliacao')?.touched && formCadastro.get('avaliacao')?.errors?.['required']"
-        class="error-message">Avaliação é obrigatória</div>
+        class="error-message">Avaliação é obrigatória, até uma casa decimal</div>
+      <div *ngIf="formCadastro.get('avaliacao')?.touched && formCadastro.get('avaliacao')?.hasError('pattern')"
+        class="error-message">Avaliação entre 0 e 10, até uma casa decimal</div>
 
       <ion-item>
-        <ion-label position="floating">Preço</ion-label>
+        <ion-label position="floating">Preço em Reais</ion-label>
         <ion-input formControlName="preco" type="number" placeholder="Insira o preço do jogo"></ion-input>
       </ion-item>
       <div *ngIf="formCadastro.get('preco')?.touched && formCadastro.get('preco')?.errors?.['required']"
-        class="error-message">Preço é obrigatório</div>
+        class="error-message">Preço é obrigatório, até duas casas decimais</div>
+      <div *ngIf="formCadastro.get('preco')?.touched && formCadastro.get('preco')?.errors?.['min']"
+        class="error-message">
+        Preço com valores positivos
+      </div>
 
       <ion-item>
         <ion-label>Imagem</ion-label>
