@@ -16,7 +16,8 @@
       </ion-item>
 
       <ion-item disabled="{{edicao}}">
-        <ion-input label="Nome:" placeholder="Insira o nome do jogo" formControlName="nome"></ion-input>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input placeholder="Insira o nome do jogo" formControlName="nome"></ion-input>
       </ion-item>
       <div *ngIf="formDetalhes.get('nome')?.touched && formDetalhes.get('nome')?.errors?.['required']"
         class="error-message">
@@ -24,7 +25,8 @@
       </div>
 
       <ion-item disabled="{{edicao}}">
-        <ion-input label="Plataforma:" placeholder="Insira a plataforma" formControlName="plataforma"></ion-input>
+        <ion-label position="floating">Plataforma</ion-label>
+        <ion-input placeholder="Insira a plataforma" formControlName="plataforma"></ion-input>
       </ion-item>
       <div *ngIf="formDetalhes.get('plataforma')?.touched && formDetalhes.get('plataforma')?.errors?.['required']"
         class="error-message">
@@ -46,8 +48,8 @@
       </div>
 
       <ion-item disabled="{{edicao}}">
-        <ion-input label="Avaliação:" placeholder="Insira a nota do jogo" formControlName="avaliacao"
-          type="number"></ion-input>
+        <ion-label position="floating">Avaliação</ion-label>
+        <ion-input placeholder="Insira a nota do jogo" formControlName="avaliacao" type="number"></ion-input>
       </ion-item>
       <div *ngIf="formDetalhes.get('avaliacao')?.touched && formDetalhes.get('avaliacao')?.errors?.['required']"
         class="error-message">
@@ -59,8 +61,8 @@
       </div>
 
       <ion-item disabled="{{edicao}}">
-        <ion-input label="Preço em Reais:" placeholder="Insira o preço do jogo" formControlName="preco"
-          type="number"></ion-input>
+        <ion-label position="floating">Preço em Reais</ion-label>
+        <ion-input placeholder="Insira o preço do jogo" formControlName="preco" type="number"></ion-input>
       </ion-item>
       <div *ngIf="formDetalhes.get('preco')?.touched && formDetalhes.get('preco')?.errors?.['required']"
         class="error-message">

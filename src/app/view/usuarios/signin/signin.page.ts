@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { error } from 'console';
 import { AlertService } from 'src/app/common/alert.service';
 import { AuthService } from 'src/app/model/services/auth.service';
 @Component({
@@ -90,7 +89,7 @@ export class SigninPage implements OnInit {
         this.alertService.presentAlert('Logar', 'Erro ao Logar!');
         console.log(error.message);
       });
-    }
+  }
 
   irParaSignUp() {
     this.router.navigate(['signup']);

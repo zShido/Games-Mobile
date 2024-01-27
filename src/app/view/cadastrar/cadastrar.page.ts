@@ -52,7 +52,7 @@ export class CadastrarPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^\d+(\.\d{0,2})$/),
+          Validators.pattern(/^\d+(\.\d{0,2})?$/),
           Validators.min(0),
         ],
       ],
@@ -65,6 +65,7 @@ export class CadastrarPage implements OnInit {
 
   cadastrar() {
     if (this.formCadastro.valid) {
+      this.alertService.simpleLoader();
       let novo: Jogo = new Jogo(
         this.formCadastro.value.nome,
         this.formCadastro.value.plataforma,
@@ -77,11 +78,18 @@ export class CadastrarPage implements OnInit {
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
       } else {
-        this.firebase.create(novo);
+        this.firebase
+          .create(novo)
+          .then(() => {
+            this.alertService.dismissLoader(); // Descarta o loader após a conclusão do salvamento
+            this.alertService.presentAlert('Sucesso', 'Jogo salvo!');
+            this.router.navigate(['/home']);
+          })
+          .catch((error) => {
+            this.alertService.dismissLoader(); // Descarta o loader em caso de erro
+            console.error('Erro ao salvar o jogo', error);
+          });
       }
-
-      this.alertService.presentAlert('Sucesso', 'Jogo cadastrado com sucesso!');
-      this.router.navigate(['/home']);
     } else {
       this.alertService.presentAlert(
         'Erro',
