@@ -77,6 +77,8 @@ export class CadastrarPage implements OnInit {
 
       if (this.imagem) {
         this.firebase.uploadImage(this.imagem, novo);
+        this.alertService.presentAlert('Sucesso', 'Jogo salvo!');
+        this.router.navigate(['/home']);
       } else {
         this.firebase
           .create(novo)
