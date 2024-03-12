@@ -12,6 +12,7 @@ export class HomePage {
   public lista_jogos: Jogo[] = [];
   public Genero = Genero;
   public user: any;
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -20,18 +21,26 @@ export class HomePage {
   ) {
     this.user = this.authService.getUserLogged(); //recupera o usuário logado
     console.log(this.user);
-    this.firebaseService.read(this.user.uid).subscribe((res) => {
-      this.lista_jogos = res.map((jogo) => {
-        return {
-          id: jogo.payload.doc.id,
-          ...(jogo.payload.doc.data() as any),
-        } as Jogo;
+    this.isLoading = true;
+    setTimeout(() => {
+      this.firebaseService.read(this.user.uid).subscribe((res) => {
+        this.lista_jogos = res.map((jogo) => {
+          return {
+            id: jogo.payload.doc.id,
+            ...(jogo.payload.doc.data() as any),
+          } as Jogo;
+        });
       });
-    });
+      this.isLoading = false;
+    }, 2000);
   }
 
   irParaCadastrar() {
     this.router.navigate(['/cadastrar']);
+  }
+
+  editarJogo(jogo: Jogo) {
+    this.editar(jogo);
   }
 
   editar(jogo: Jogo) {

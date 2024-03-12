@@ -1,0 +1,20 @@
+.loading-game {
+  height: 10vh;
+  border-radius: 20px;
+}
+
+ion-list{
+    background-color:  #002240;
+}
+
+ion-item {
+  --inner-border-width: 0;
+  --background: transparent;
+  background-color: indigo;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: none;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

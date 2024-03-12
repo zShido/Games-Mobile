@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Lista de Jogos </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-loading-game *ngIf="isLoading"></app-loading-game>
+  <ion-list *ngIf="!isLoading" lines="none">
+    <app-empty-screen *ngIf="lista_jogos.length == 0 && !isLoading"></app-empty-screen>
+    <ion-item-group *ngIf="lista_jogos.length > 0">
+      <app-games *ngFor="let jogo of lista_jogos" [jogo]="jogo" (editarJogo)="editar($event)"></app-games>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-fab horizontal="start" vertical="bottom">
+    <ion-fab-button (click)="logout()" color="danger">
+      <ion-icon name="log-out-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="bottom">
+    <ion-fab-button class="add-game" (click)="irParaCadastrar()">
+      <ion-icon class="game-icon" name="game-controller-sharp">></ion-icon>
+      <ion-icon class="add-icon" name="add-circle-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

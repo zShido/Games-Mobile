@@ -1,0 +1,14 @@
+<ion-item (click)="emitirEdicao(jogo)">
+  <ion-avatar slot="end" *ngIf="jogo.downloadURL != null">
+    <img src="{{jogo.downloadURL}}" />
+  </ion-avatar>
+  <ion-avatar slot="end" *ngIf="jogo.downloadURL == null">
+    <img src="assets/icon/image.jpg" />
+  </ion-avatar>
+  <ion-label>
+    <strong>{{jogo.nome}}</strong><br />
+    <span class="info-jogo">Gênero: {{jogo.genero}}</span> <br />
+    <span class="info-jogo">Avaliação: {{jogo.avaliacao}}</span><br />
+    <span class="info-jogo">Preço: R${{jogo.preco}}</span>
+  </ion-label>
+</ion-item>
