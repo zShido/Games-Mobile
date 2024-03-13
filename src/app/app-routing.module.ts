@@ -10,7 +10,9 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () =>
-      import('./view/games/welcome/welcome.module').then((m) => m.WelcomePageModule),
+      import('./view/games/welcome/welcome.module').then(
+        (m) => m.WelcomePageModule
+      ),
   },
   {
     path: 'home',
