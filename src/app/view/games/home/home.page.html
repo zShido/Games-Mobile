@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Lista de Jogos </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar #mySearchbar (ionChange)="onSearchChange($event)" placeholder="Pesquisar"></ion-searchbar>
+  <app-loading-game *ngIf="isLoading"></app-loading-game>
+  <ion-list *ngIf="!isLoading" lines="none">
+    <!-- Exibe a lista de jogos se houver jogos e a pesquisa não foi realizada -->
+    <ion-item-group *ngIf="!hasSearched && lista_jogos.length > 0">
+      <app-games *ngFor="let jogo of lista_jogos" [jogo]="jogo" (editarJogo)="editar($event)"></app-games>
+    </ion-item-group>
+    <!-- Exibe a lista de jogos filtrada se houver jogos e a pesquisa foi realizada -->
+    <ion-item-group *ngIf="hasSearched && jogos.length > 0">
+      <app-games *ngFor="let jogo of jogos" [jogo]="jogo" (editarJogo)="editar($event)"></app-games>
+    </ion-item-group>
+    <!-- Exibe o componente empty-screen se não houver jogos filtrados após a pesquisa -->
+    <app-empty-screen *ngIf="hasSearched && jogos.length == 0"></app-empty-screen>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <ion-fab horizontal="start" vertical="bottom">
+    <ion-fab-button (click)="logout()" color="danger">
+      <ion-icon name="log-out-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="bottom">
+    <ion-fab-button class="add-game" (click)="irParaCadastrar()">
+      <ion-icon class="game-icon" name="game-controller-sharp">></ion-icon>
+      <ion-icon class="add-icon" name="add-circle-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

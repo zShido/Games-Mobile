@@ -10,25 +10,27 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () =>
-      import('./view/welcome/welcome.module').then((m) => m.WelcomePageModule),
+      import('./view/games/welcome/welcome.module').then(
+        (m) => m.WelcomePageModule
+      ),
   },
   {
     path: 'home',
     loadChildren: () =>
-      import('./view/home/home.module').then((m) => m.HomePageModule),
+      import('./view/games/home/home.module').then((m) => m.HomePageModule),
   },
 
   {
     path: 'cadastrar',
     loadChildren: () =>
-      import('./view/cadastrar/cadastrar.module').then(
+      import('./view/games/cadastrar/cadastrar.module').then(
         (m) => m.CadastrarPageModule
       ),
   },
   {
     path: 'detalhar',
     loadChildren: () =>
-      import('./view/detalhar/detalhar.module').then(
+      import('./view/games/detalhar/detalhar.module').then(
         (m) => m.DetalharPageModule
       ),
   },

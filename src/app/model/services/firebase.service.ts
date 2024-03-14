@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
 import { AlertService } from 'src/app/common/alert.service';
 import Jogo from '../Entities/Jogo';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

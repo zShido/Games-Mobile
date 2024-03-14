@@ -1,0 +1,44 @@
+:host {
+  ion-item {
+    --inner-border-width: 0;
+    --background: transparent;
+    background-color: indigo;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    border: none;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  ion-label {
+    font-family: "Press Start 2P", cursive;
+    font-size: 0.6em;
+    flex: none;
+    color: rgba(255, 255, 0, 1);
+    width: 100%;
+    margin-top: 15px;
+    line-height: 1.5em;
+  }
+
+  ion-avatar {
+    --border-radius: 15px;
+    width: 70px;
+    height: 70px;
+  }
+
+  ion-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  strong {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .info-jogo {
+    color: rgba(255, 255, 0, 0.6); // Cor amarela com 60% de opacidade
+  }
+}

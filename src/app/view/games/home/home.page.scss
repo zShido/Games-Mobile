@@ -1,0 +1,45 @@
+:host {
+  font-family: "Press Start 2P", cursive;
+
+  ion-content {
+    --background: #002240; // Cor azul petróleo
+    font-family: "Press Start 2P", cursive; // Fonte retro pixel
+    color: yellow; // Cor amarela para todo o texto
+  }
+
+  ion-toolbar {
+    --background: dodgerblue; /* Gradiente azul celeste */
+    border-radius: 20px 20px 0 0;
+    text-align: left; // para alinhar o título à esquerda
+  }
+
+  .add-game {
+    font-family: "Press Start 2P", cursive;
+    --background: dodgerblue;
+    --color: yellow;
+  }
+
+  ion-list {
+    background: transparent;
+  }
+
+  ion-title {
+    font-family: "Press Start 2P";
+    font-size: 0.8em;
+    color: yellow;
+  }
+
+  ion-searchbar {
+    font-family: "Press Start 2P";
+    --background: var(--ion-color-tertiary);
+    --border-radius: 20px;
+  }
+
+  .game-icon {
+    font-size: 30px;
+  }
+
+  .add-icon {
+    font-size: small;
+  }
+}
