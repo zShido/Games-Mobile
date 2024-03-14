@@ -31,6 +31,8 @@
 
   ion-searchbar {
     font-family: "Press Start 2P";
+    --background: var(--ion-color-tertiary);
+    --border-radius: 20px;
   }
 
   .game-icon {
